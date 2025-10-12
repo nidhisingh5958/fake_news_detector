@@ -3,5 +3,4 @@
 __pycache__
 *.pyc
 env/
-model.pkl
-vectorizer.pkl
+run.sh

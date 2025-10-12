@@ -178,7 +178,11 @@ class FakeNewsDetectorApp {
         
         // Add news relevance info if available
         if (data.news_relevance) {
-            this.addNewsRelevanceInfo(data.news_relevance);
+            const relevanceElement = this.createIndicatorElement('News Relevance', {
+                score: data.news_relevance.score || 0,
+                message: data.news_relevance.message || 'News relevance analysis'
+            });
+            indicatorsList.appendChild(relevanceElement);
         }
     }
 

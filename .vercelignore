@@ -1,0 +1,13 @@
+*.pkl
+*.pyc
+__pycache__/
+.DS_Store
+.vscode/
+data/
+*.ipynb
+train_simple.py
+app_simple.py
+app.py
+fake_news_detector.py
+news_fetcher.py
+run.sh

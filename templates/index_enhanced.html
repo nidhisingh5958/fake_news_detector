@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark-theme.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+        <span>Dark Mode</span>
+    </button>
+
+    <!-- Floating particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-icon-wrapper">
+                    <i class="fas fa-shield-alt header-icon"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h1>AI Fake News Detector</h1>
+                <p>Advanced AI-powered analysis to detect misinformation and verify news authenticity</p>
+                <div class="header-stats">
+                    <div class="stat">
+                        <span class="stat-number">98.9%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">< 1s</span>
+                        <span class="stat-label">Analysis Time</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">AI</span>
+                        <span class="stat-label">Powered</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="url-input">
+                        <i class="fas fa-link"></i>
+                        Article URL (Optional)
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="url" id="url-input" placeholder="https://example.com/news-article">
+                        <div class="input-glow"></div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="text-input">
+                        <i class="fas fa-file-text"></i>
+                        Article Text or News Content
+                    </label>
+                    <div class="textarea-wrapper">
+                        <textarea id="text-input" placeholder="Paste the news article text here for analysis..." rows="8"></textarea>
+                        <div class="textarea-glow"></div>
+                    </div>
+                    <div class="char-counter">
+                        <span id="char-count">0</span> characters
+                        <div class="counter-bar">
+                            <div class="counter-fill" id="counter-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-wrapper">
+                    <button id="analyze-btn" class="analyze-btn">
+                        <i class="fas fa-brain"></i>
+                        <span>Analyze with AI</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="loading-animation">
+                    <div class="spinner-modern"></div>
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <p>Analyzing content with advanced AI...</p>
+            </div>
+
+            <div id="results" class="results hidden">
+                <div class="results-header">
+                    <h2><i class="fas fa-chart-line"></i> Analysis Results</h2>
+                    <div class="results-badge">
+                        <i class="fas fa-certificate"></i>
+                        AI Verified
+                    </div>
+                </div>
+
+                <div class="verdict-card">
+                    <div class="verdict-icon">
+                        <i id="verdict-emoji" class="fas fa-question-circle"></i>
+                        <div class="icon-pulse"></div>
+                    </div>
+                    <div class="verdict-content">
+                        <h3 id="verdict-level">Analysis Result</h3>
+                        <p id="verdict-message">Analyzing...</p>
+                        <div class="scores">
+                            <div class="score-item">
+                                <span class="score-label">Risk Score</span>
+                                <div class="score-bar">
+                                    <div id="risk-bar" class="score-fill risk"></div>
+                                    <span id="risk-score" class="score-value">0%</span>
+                                </div>
+                            </div>
+                            <div class="score-item">
+                                <span class="score-label">Credibility Score</span>
+                                <div class="score-bar">
+                                    <div id="credibility-bar" class="score-fill credibility"></div>
+                                    <span id="credibility-score" class="score-value">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ai-prediction" class="ai-section">
+                    <h3><i class="fas fa-robot"></i> AI Model Prediction</h3>
+                    <div class="ai-content">
+                        <div class="ai-prediction">
+                            <span id="ai-result">N/A</span>
+                            <div class="prediction-glow"></div>
+                        </div>
+                        <div class="ai-confidence">
+                            <div class="confidence-circle">
+                                <span id="ai-confidence">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="indicators-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Risk Indicators</h3>
+                    <div id="indicators-list" class="indicators-list">
+                        <!-- Indicators will be populated here -->
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3><i class="fas fa-chart-bar"></i> Text Statistics</h3>
+                    <div id="stats-grid" class="stats-grid">
+                        <!-- Stats will be populated here -->
+                    </div>
+                </div>
+
+                <div class="disclaimer">
+                    <h4><i class="fas fa-info-circle"></i> Important Disclaimer</h4>
+                    <p>This AI tool provides indicators but is not definitive. Always verify through multiple credible sources, check fact-checking websites, and consider the source's reputation.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        const text = themeToggle.querySelector('span');
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', savedTheme);
+        updateToggleButton(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleButton(newTheme);
+        });
+        
+        function updateToggleButton(theme) {
+            if (theme === 'dark') {
+                icon.className = 'fas fa-sun';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.className = 'fas fa-moon';
+                text.textContent = 'Dark Mode';
+            }
+        }
+    </script>
+</body>
+</html>

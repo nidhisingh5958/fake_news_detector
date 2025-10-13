@@ -36,7 +36,7 @@ def analyze_text_simple(text):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index_enhanced.html')
 
 @app.route('/analyze', methods=['POST'])
 def analyze():

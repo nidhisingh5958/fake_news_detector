@@ -1,0 +1,83 @@
+/* Dark Theme Styles */
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: rgba(30, 41, 59, 0.8);
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --border-color: #334155;
+    --accent-color: #8b5cf6;
+}
+
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #312e81 100%);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .header-content {
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+[data-theme="dark"] .main-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] input[type="url"],
+[data-theme="dark"] textarea {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] input[type="url"]:focus,
+[data-theme="dark"] textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="dark"] .verdict-card {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.9) 100%);
+}
+
+[data-theme="dark"] .ai-section {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .indicator-item,
+[data-theme="dark"] .stat-item,
+[data-theme="dark"] .score-item {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .particle {
+    background: rgba(139, 92, 246, 0.6);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 12px 20px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.theme-toggle i {
+    margin-right: 8px;
+}

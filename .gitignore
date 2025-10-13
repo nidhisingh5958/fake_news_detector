@@ -1,6 +1,9 @@
-.vscode
-.DS_Store
-__pycache__
+*.pkl
 *.pyc
-env/
-run.sh
+__pycache__/
+.DS_Store
+.vscode/
+data/
+*.ipynb
+.env
+node_modules/

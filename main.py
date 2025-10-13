@@ -4,19 +4,14 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import re
-import os
 
 app = FastAPI()
 
-# Get the directory of this file
-current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(current_dir)
-
 # Mount static files
-app.mount("/static", StaticFiles(directory=os.path.join(parent_dir, "static")), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Templates
-templates = Jinja2Templates(directory=os.path.join(parent_dir, "templates"))
+templates = Jinja2Templates(directory="templates")
 
 class AnalyzeRequest(BaseModel):
     text: str
@@ -109,3 +104,7 @@ async def health_check():
         'status': 'healthy',
         'ai_model_available': True
     }
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

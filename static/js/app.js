@@ -75,6 +75,8 @@ class FakeNewsDetectorApp {
     hideLoading() {
         this.loading.classList.add('hidden');
         this.analyzeBtn.disabled = false;
+        // Ensure button is clickable again
+        this.updateCharCounter();
     }
 
     showError(message) {
